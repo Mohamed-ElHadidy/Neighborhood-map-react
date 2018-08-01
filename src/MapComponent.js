@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+
 
 export class MapComponent extends Component {
-
+    
 
     render() {
-
-        const style = {
-            width: '100%',
-            height: '100%'
-        }
-
+        
+        console.log(this.props.places)
         return (
+            
             <div>
-                <Map
+                <Map 
                     google={this.props.google}
-                    style={style}
+                    
                     initialCenter={{
                         lat: 31.2089829,
                         lng: 29.8802905
                     }}
                     zoom={13}
-                    onClick={this.onMapClicked}
-                />
+
+                >
+               
+
+                    {this.props.places.map(place =>
+
+                        <Marker
+                            key={place.id}
+                            name={place.name}
+                            position={{
+                                lat: place.latlong.lat,
+                                lng: place.latlong.lng
+                            }}
+                            animation= {this.props.google.maps.Animation.DROP}
+
+                        />
+
+                    )}
+
+                </Map>
+
             </div>
         );
     }
@@ -30,5 +47,5 @@ export class MapComponent extends Component {
 
 export default GoogleApiWrapper({
     apiKey: ('AIzaSyBVBLrDCMVaRE80NoycGitl4YIDyTZbNdA'),
-    LoadingContainer: MapComponent
+    //LoadingContainer: MapComponent
 })(MapComponent)

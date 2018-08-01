@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 
 export class MapComponent extends Component {
-    
+
 
     render() {
-        
-        console.log(this.props.places)
+
+        const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces } = this.props;
+
+        console.log(places)
         return (
-            
+
             <div>
-                <Map 
-                    google={this.props.google}
-                    
+                <Map
+                    google={google}
+                    onMapClicked={onMapClicked}
                     initialCenter={{
                         lat: 31.2089829,
                         lng: 29.8802905
@@ -21,10 +23,8 @@ export class MapComponent extends Component {
                     zoom={13}
 
                 >
-               
 
-                    {this.props.places.map(place =>
-
+                    {places.map(place =>
                         <Marker
                             key={place.id}
                             name={place.name}
@@ -32,11 +32,19 @@ export class MapComponent extends Component {
                                 lat: place.latlong.lat,
                                 lng: place.latlong.lng
                             }}
-                            animation= {this.props.google.maps.Animation.DROP}
-
+                            animation={google.maps.Animation.DROP}
+                            onClick={onMarkerClick}
                         />
-
                     )}
+
+                    <InfoWindow
+                        marker={activeMarker}
+                        visible={showingInfoWindow}
+                    >
+                        <div>
+                            <h1>{selectedPlaces.name}</h1>
+                        </div>
+                    </InfoWindow>
 
                 </Map>
 

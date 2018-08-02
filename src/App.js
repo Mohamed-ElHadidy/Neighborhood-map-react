@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MapComponent from './MapComponent';
 import Header from './Header'
+import Menu from './Menu'
 import { places } from './places'
 
 class App extends Component {
@@ -20,13 +21,13 @@ class App extends Component {
     this.setState({ places })
   }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (dist, marker) =>
     this.setState({
-      selectedPlace: props,
+      selectedPlace: dist,
       activeMarker: marker,
       showingInfoWindow: true
     });
-
+/*
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -35,7 +36,7 @@ class App extends Component {
       })
     }
   };
-
+*/
   render() {
 
     const { places, activeMarker, showingInfoWindow, selectedPlace } = this.state;
@@ -45,6 +46,11 @@ class App extends Component {
       <div className="App">
 
         <Header />
+        <Menu 
+          places={places}
+          onMarker={this.onMarkerClick}
+          activeMarker={activeMarker}
+        />
 
         <MapComponent
 
@@ -57,6 +63,7 @@ class App extends Component {
 
         />
 
+        
       </div>
     );
   }

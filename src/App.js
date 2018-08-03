@@ -15,6 +15,8 @@ class App extends Component {
     activeMarker: {},
     selectedPlace: {},
 
+    query: ''
+
   }
 
   componentDidMount() {
@@ -27,16 +29,21 @@ class App extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-/*
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-  };
-*/
+  /*
+    onMapClicked = (props) => {
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        })
+      }
+    };
+  */
+
+  updateQuery = (query) => {
+    this.setState({ query })
+  }
+
   render() {
 
     const { places, activeMarker, showingInfoWindow, selectedPlace } = this.state;
@@ -46,14 +53,18 @@ class App extends Component {
       <div className="App">
 
         <Header />
-        <Menu 
+        <Menu
           places={places}
           onMarker={this.onMarkerClick}
           activeMarker={activeMarker}
+          showingInfoWindow={showingInfoWindow}
+
+          query={this.state.query}
+          updateQuery={this.updateQuery}
         />
 
         <MapComponent
-
+        
           places={places}
           onMapClicked={this.onMapClicked}
           onMarkerClick={this.onMarkerClick}

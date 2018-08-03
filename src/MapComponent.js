@@ -12,8 +12,9 @@ export class MapComponent extends Component {
         console.log(places)
         return (
 
-            <div>
+            <div >
                 <Map
+                    className="map"
                     google={google}
                     onMapClicked={onMapClicked}
                     initialCenter={{

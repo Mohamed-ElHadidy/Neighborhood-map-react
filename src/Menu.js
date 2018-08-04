@@ -3,11 +3,22 @@ import React, { Component } from 'react';
 
 class Menu extends Component {
 
+    state = { visible: false }
+
+    handleClick = () => {this.setState(prev => ({ visible: !prev.visible }))}
+
     render() {
 
-        return (
-            <div  className="menu">
+        const style = {
+            'z-index': '1'
+           
 
+        }
+
+        return (
+            <div  className= {this.state.visible ? 'slideIn menu' : 'slideOut menu'}
+            style={style}>
+<div >
                 <input
                     className="search-input"
                     type="text"
@@ -30,8 +41,8 @@ class Menu extends Component {
 
                     )}
                 </ol>
-
-                    <button className="menu-btn">Menu &#x268C;</button>
+</div>
+                    <button className="menu-btn" onClick={this.handleClick}>Menu &#x268C;</button>
 
             </div>
         )

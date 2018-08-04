@@ -5,21 +5,19 @@ class Menu extends Component {
 
     state = { visible: false }
 
-    handleClick = () => {this.setState(prev => ({ visible: !prev.visible }))}
+    handleClick = () => { this.setState(prev => ({ visible: !prev.visible })) }
 
     render() {
 
         const style = {
             'z-index': '1',
             'position': 'absolute'
-           
-
         }
 
         return (
-            <div  className= {this.state.visible ? 'slideIn menu' : 'slideOut menu'}
-            style={style}>
-<div >
+            <div className={this.state.visible ? 'slideIn menu' : 'slideOut menu'}
+                style={style}>
+
                 <input
                     className="search-input"
                     type="text"
@@ -28,10 +26,10 @@ class Menu extends Component {
                     onChange={(e) => this.props.updateQuery(e.target.value)}
                 />
 
+                <button className="menu-btn" onClick={this.handleClick}>Menu &#x268C;</button>
+
                 <ol>
                     {this.props.places.map(place =>
-
-
 
                         <li
                             key={place.name}
@@ -39,15 +37,11 @@ class Menu extends Component {
                         >{place.name}
                         </li>
 
-
                     )}
                 </ol>
-</div>
-                    <button className="menu-btn" onClick={this.handleClick}>Menu &#x268C;</button>
 
             </div>
         )
-
     }
 
 }

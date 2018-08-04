@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 import './App.css';
 import MapComponent from './MapComponent';
-import Header from './Header'
-import Menu from './Menu'
-import { places } from './places'
+import Header from './Header';
+import Menu from './Menu';
+import { places } from './places';
 
 class App extends Component {
 
@@ -16,7 +18,6 @@ class App extends Component {
     selectedPlace: {},
 
     query: ''
-
   }
 
   componentDidMount() {
@@ -39,22 +40,39 @@ class App extends Component {
       }
     };
   */
-
+// to update query stat depending on search input value
   updateQuery = (query) => {
     this.setState({ query })
   }
 
   render() {
 
-    const { places, activeMarker, showingInfoWindow, selectedPlace } = this.state;
+    const { places, activeMarker, showingInfoWindow, selectedPlace, query } = this.state;
+
+    //To filter the places list as i learnead from the course
+    let showingPlaces;
+    if (query.trim() !== '') {
+      const match = new RegExp(escapeRegExp(query), 'i');
+      showingPlaces = places.filter((place) => match.test(place.name));
+      // if the their is no matching place empty the list
+      if (match.length === 0) {
+        showingPlaces = [];
+      }
+      // if the query is empty show the full list
+    } else {
+      showingPlaces = places;
+    }
+    // sort the places by name
+    showingPlaces.sort(sortBy('name'))
 
     console.log(places);
+
     return (
       <div className="App">
 
         <Header />
         <Menu
-          places={places}
+          places={showingPlaces}
           onMarker={this.onMarkerClick}
           activeMarker={activeMarker}
           showingInfoWindow={showingInfoWindow}
@@ -64,8 +82,8 @@ class App extends Component {
         />
 
         <MapComponent
-        
-          places={places}
+
+          places={showingPlaces}
           onMapClicked={this.onMapClicked}
           onMarkerClick={this.onMarkerClick}
           activeMarker={activeMarker}
@@ -74,7 +92,6 @@ class App extends Component {
 
         />
 
-        
       </div>
     );
   }

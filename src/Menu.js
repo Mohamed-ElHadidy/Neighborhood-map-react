@@ -10,7 +10,8 @@ class Menu extends Component {
     render() {
 
         const style = {
-            'z-index': '1'
+            'z-index': '1',
+            'position': 'absolute'
            
 
         }

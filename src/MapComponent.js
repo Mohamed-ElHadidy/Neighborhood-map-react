@@ -10,12 +10,10 @@ export class MapComponent extends Component {
         const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces } = this.props;
 
         console.log(places)
+        
         const style = {
-            width: '80%',
+            width: '100%',
             height: '100%',
-    
-           
-
         }
         return (
 

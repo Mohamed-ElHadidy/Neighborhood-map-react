@@ -24,13 +24,13 @@ class App extends Component {
     this.setState({ places })
   }
 
-  onMarkerClick = (dist, marker) =>
+  onMarkerClick = (props, marker, e) =>
     this.setState({
-      selectedPlace: dist,
+      selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-  /*
+  
     onMapClicked = (props) => {
       if (this.state.showingInfoWindow) {
         this.setState({
@@ -39,7 +39,7 @@ class App extends Component {
         })
       }
     };
-  */
+  
 // to update query stat depending on search input value
   updateQuery = (query) => {
     this.setState({ query })
@@ -73,7 +73,7 @@ class App extends Component {
         <Header />
         <Menu
           places={showingPlaces}
-          onMarker={this.onMarkerClick}
+          onMarkerClick={this.onMarkerClick}
           activeMarker={activeMarker}
           showingInfoWindow={showingInfoWindow}
 

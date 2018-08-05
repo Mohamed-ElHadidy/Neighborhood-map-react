@@ -33,7 +33,7 @@ class Menu extends Component {
 
                         <li
                             key={place.name}
-                            onClick={() => this.props.onMarker(place, this.props.activeMarker)}
+                            onClick={(e) => this.props.onMarkerClick(place)}
                         >{place.name}
                         </li>
 

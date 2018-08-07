@@ -17,7 +17,7 @@ export class MapComponent extends Component {
         }
         return (
 
-            <div >
+            <div role="application">
                 <Map
                     style={style}
                     className="map"

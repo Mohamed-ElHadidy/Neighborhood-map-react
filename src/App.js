@@ -6,7 +6,7 @@ import './App.css';
 import MapComponent from './MapComponent';
 import Header from './Header';
 import Menu from './Menu';
-import * as places  from './places';
+//import * as places  from './places';
 
 class App extends Component {
 
@@ -21,7 +21,24 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ places })
+    //this.setState({ places })
+
+    this.fetch4sqr();
+  }
+
+  fetch4sqr = () => {
+    let longURL = 'https://api.foursquare.com/v2/venues/search?ll=31.2001,29.9187&query=museum&limit=8&client_id=EZJTGK5PUBSHU4IE5D35DJC0VVPQLLWYK13DWYH2WUFCV2WG&client_secret=5CGW1M3HKQ0WYHACNLOZZYMXP5VKR3UDKU2BT2LSEK2UZHTJ&v=20180803';
+
+    fetch(longURL)
+      .then(response => {
+        if (!response.ok) {
+          throw Error
+        } else {
+          return response.json();
+        }
+      }).then(places => {
+        this.setState({ places: places.response.venues });
+      }).catch(error => (console.log(error)));
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -30,17 +47,17 @@ class App extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-  
-    onMapClicked = (props) => {
-      if (this.state.showingInfoWindow) {
-        this.setState({
-          showingInfoWindow: false,
-          activeMarker: null
-        })
-      }
-    };
-  
-// to update query stat depending on search input value
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
+  // to update query stat depending on search input value
   updateQuery = (query) => {
     this.setState({ query })
   }

@@ -36,8 +36,8 @@ export class MapComponent extends Component {
                             key={place.id}
                             name={place.name}
                             position={{
-                                lat: place.latlong.lat,
-                                lng: place.latlong.lng
+                                lat: place.location.lat,
+                                lng: place.location.lng
                             }}
                             animation={google.maps.Animation.DROP}
                             onClick={onMarkerClick}
@@ -49,7 +49,7 @@ export class MapComponent extends Component {
                         visible={showingInfoWindow}
                     >
                         <div>
-                            <h1>{selectedPlaces.name}</h1>
+                            <h3>{selectedPlaces.name}</h3>
                         </div>
                     </InfoWindow>
 

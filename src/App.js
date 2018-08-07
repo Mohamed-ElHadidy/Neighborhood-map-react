@@ -6,7 +6,7 @@ import './App.css';
 import MapComponent from './MapComponent';
 import Header from './Header';
 import Menu from './Menu';
-import { places } from './places';
+import * as places  from './places';
 
 class App extends Component {
 

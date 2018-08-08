@@ -28,7 +28,7 @@ class App extends Component {
     //this.setState({ places })
     //updatethe places state 
     this.fetch4sqr();
-
+    // Google maps api error handler
     window.gm_authFailure = () => {
       alert('Google maps loading failed');
       this.setState({ gMapError: true })
@@ -53,6 +53,7 @@ class App extends Component {
       }).then(places => {
         this.setState({ places: places.response.venues });
       }).catch(error => (console.log(error)));
+    this.setState({ fourSqrError: true })
   }
   // to open the info window when the marker is clicked
   onMarkerClick = (props, marker, e) =>
@@ -149,6 +150,7 @@ class App extends Component {
             showingInfoWindow={showingInfoWindow}
             selectedPlaces={selectedPlace}
             grabMarkersinfo={this.grabMarkersinfo}
+            fetchError={this.state.fourSqrError}
           />
           : <h1 className="gmerror">Google maps loading failed</h1>
         }

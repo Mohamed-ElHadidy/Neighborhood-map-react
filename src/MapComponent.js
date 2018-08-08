@@ -41,7 +41,7 @@ export class MapComponent extends Component {
                                 lat: place.location.lat,
                                 lng: place.location.lng
                             }}
-                            animation={google.maps.Animation.DROP}
+                            animation={(selectedPlaces.name === place.name) ? google.maps.Animation.BOUNCE : google.maps.Animation.none}
                             onClick={onMarkerClick}
                         />
                     )}

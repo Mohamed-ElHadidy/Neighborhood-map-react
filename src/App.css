@@ -82,6 +82,10 @@ Map {
   box-shadow: 2px 4px 8px #14576b;
 }
 
+.menu-btn:focus {
+  background-color: #c21603;
+}
+
 .slideIn {
   transform: translateX(0);
 }

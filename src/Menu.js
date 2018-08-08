@@ -22,8 +22,11 @@ class Menu extends Component {
                 tabIndex={visible ? '0' : '-1'}
                 style={style}>
 
+                <button className="menu-btn" onClick={this.handleClick}>Menu &#x268C;</button>
+
                 <input
                     className="search-input"
+                    tabIndex={visible ? '0' : '-1'}
                     type="text"
                     placeholder="Search by title"
                     value={query}
@@ -31,7 +34,6 @@ class Menu extends Component {
                     aria-label={`search for museum by name`}
                 />
 
-                <button className="menu-btn" onClick={this.handleClick}>Menu &#x268C;</button>
 
                 <ol>
                     {places.map(place =>
@@ -39,7 +41,10 @@ class Menu extends Component {
                         <li
                             key={place.name}
                             aria-label={`show the ${place.name} info window`}
+                            role="button"
+                            tabIndex={visible ? '0' : '-1'}
                             onClick={(e) => connectLiToMarker(place)}
+                            onKeyPress={(e) => connectLiToMarker(place)}
                         >{place.name}
                         </li>
 

@@ -36,19 +36,25 @@ class Menu extends Component {
 
 
                 <ol>
-                    {places.map(place =>
+                    {!this.props.fetchError ?
 
-                        <li
-                            key={place.name}
-                            aria-label={`show the ${place.name} info window`}
-                            role="button"
-                            tabIndex={visible ? '0' : '-1'}
-                            onClick={(e) => connectLiToMarker(place)}
-                            onKeyPress={(e) => connectLiToMarker(place)}
-                        >{place.name}
-                        </li>
 
-                    )}
+                        places.map(place =>
+
+                            <li
+                                key={place.name}
+                                aria-label={`show the ${place.name} info window`}
+                                role="button"
+                                tabIndex={visible ? '0' : '-1'}
+                                onClick={(e) => connectLiToMarker(place)}
+                                onKeyPress={(e) => connectLiToMarker(place)}
+                            >{place.name}
+                            </li>
+
+                        ) : <li> Faild to fetch data from Four Square API</li>
+
+
+                    }
                 </ol>
 
             </div>

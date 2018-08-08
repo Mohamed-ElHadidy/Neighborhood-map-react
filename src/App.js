@@ -31,7 +31,7 @@ class App extends Component {
     this.fetch4sqr();
     // Google maps api error handler
     window.gm_authFailure = () => {
-      alert('Google maps loading failed');
+      //alert('Google maps loading failed');
       this.setState({ gMapError: true })
     };
   }
@@ -135,6 +135,7 @@ class App extends Component {
           connectLiToMarker={this.connectLiToMarker}
           query={query}
           updateQuery={this.updateQuery}
+          fetchError={fourSqrError}
         />
         {!gMapError ?
           <MapComponent

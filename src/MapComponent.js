@@ -50,16 +50,12 @@ export class MapComponent extends Component {
                         marker={activeMarker}
                         visible={showingInfoWindow}
                     >
-                        {fetchError ?
+                        
                             <div>
                                 <h3>{selectedPlaces.name}</h3>
                                 <p>Powered by FOUR SQUARE API</p>
-                            </div> :
-                            <div>
-                                <h3>Failed to fetch data</h3>
-                            </div>
-                        }
-
+                            </div> 
+                        
                     </InfoWindow>
 
                 </Map>

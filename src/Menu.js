@@ -16,7 +16,7 @@ class Menu extends Component {
 
         return (
             <div className={this.state.visible ? 'slideIn menu' : 'slideOut menu'}
-                     tabIndex={this.state.visible ? '0' : '-1'}
+                tabIndex={this.state.visible ? '0' : '-1'}
                 style={style}>
 
                 <input
@@ -25,7 +25,7 @@ class Menu extends Component {
                     placeholder="Search by title"
                     value={this.props.query}
                     onChange={(e) => this.props.updateQuery(e.target.value)}
-                    ariaRole={`search for museum by name`}
+                    aria-label={`search for museum by name`}
                 />
 
                 <button className="menu-btn" onClick={this.handleClick}>Menu &#x268C;</button>
@@ -35,7 +35,7 @@ class Menu extends Component {
 
                         <li
                             key={place.name}
-                            ariaRole={`show the ${place.name} info window`}
+                            aria-label={`show the ${place.name} info window`}
                             onClick={(e) => this.props.connectLiToMarker(place)}
                         >{place.name}
                         </li>

@@ -12,14 +12,15 @@ import Menu from './Menu';
 class App extends Component {
 
   state = {
+    //store locations from four aquare api
     places: [],
-
+    // markers and info window handeler
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-
+    // search input query
     query: '',
-
+    // error handlers
     gMapError: false,
     fourSqrError: false
   }
@@ -34,9 +35,6 @@ class App extends Component {
       this.setState({ gMapError: true })
     };
   }
-
-
-
   /*fetching places data from Foursquare API and convert to
    json fromat to update places state if there isn't any errors
   */
@@ -107,7 +105,7 @@ class App extends Component {
 
   render() {
 
-    const { places, activeMarker, showingInfoWindow, selectedPlace, query } = this.state;
+    const { places, activeMarker, showingInfoWindow, selectedPlace, query, fourSqrError, gMapError } = this.state;
 
     //To filter the places list as i learned from the course
     let showingPlaces;
@@ -137,10 +135,10 @@ class App extends Component {
           activeMarker={activeMarker}
           showingInfoWindow={showingInfoWindow}
           connectLiToMarker={this.connectLiToMarker}
-          query={this.state.query}
+          query={query}
           updateQuery={this.updateQuery}
         />
-        {!this.state.gMapError ?
+        {!gMapError ?
           <MapComponent
 
             places={showingPlaces}
@@ -150,7 +148,7 @@ class App extends Component {
             showingInfoWindow={showingInfoWindow}
             selectedPlaces={selectedPlace}
             grabMarkersinfo={this.grabMarkersinfo}
-            fetchError={this.state.fourSqrError}
+            fetchError={fourSqrError}
           />
           : <h1 className="gmerror">Google maps loading failed</h1>
         }

@@ -7,7 +7,7 @@ export class MapComponent extends Component {
 
     render() {
 
-        const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces } = this.props;
+        const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces, grabMarkersinfo, fetchError } = this.props;
 
         console.log(places)
 
@@ -35,7 +35,7 @@ export class MapComponent extends Component {
                         <Marker
                             key={place.id}
                             id={place.id}
-                            ref={this.props.grabMarkersinfo}
+                            ref={grabMarkersinfo}
                             name={place.name}
                             position={{
                                 lat: place.location.lat,
@@ -50,7 +50,7 @@ export class MapComponent extends Component {
                         marker={activeMarker}
                         visible={showingInfoWindow}
                     >
-                        {this.props.fetchError ?
+                        {fetchError ?
                             <div>
                                 <h3>{selectedPlaces.name}</h3>
                                 <p>Powered by FOUR SQUARE API</p>

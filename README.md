@@ -68,6 +68,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 * Google Maps API
 * Four Square API
 * Create-React-App
+* google-maps-react
 * Dependencies: 
 ```
     "escape-string-regexp": "^1.0.5",

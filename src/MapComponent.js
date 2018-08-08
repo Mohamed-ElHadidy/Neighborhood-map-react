@@ -10,7 +10,7 @@ export class MapComponent extends Component {
         const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces } = this.props;
 
         console.log(places)
-        
+
         const style = {
             width: '100%',
             height: '100%',
@@ -34,6 +34,8 @@ export class MapComponent extends Component {
                     {places.map(place =>
                         <Marker
                             key={place.id}
+                            id={place.id}
+                            ref={this.props.grabMarkersinfo}
                             name={place.name}
                             position={{
                                 lat: place.location.lat,

@@ -36,7 +36,7 @@ class Menu extends Component {
                         <li
                             key={place.name}
                             ariaRole={`show the ${place.name} info window`}
-                            onClick={(e) => this.props.onMarkerClick(place)}
+                            onClick={(e) => this.props.connectLiToMarker(place)}
                         >{place.name}
                         </li>
 

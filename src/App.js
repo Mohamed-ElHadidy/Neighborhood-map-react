@@ -6,6 +6,7 @@ import './App.css';
 import MapComponent from './MapComponent';
 import Header from './Header';
 import Menu from './Menu';
+//the hard coded places
 //import * as places  from './places';
 
 class App extends Component {
@@ -22,11 +23,14 @@ class App extends Component {
 
   componentDidMount() {
     //this.setState({ places })
-
+    //updatethe places state 
     this.fetch4sqr();
   }
 
-  fetch4sqr = () => {
+  /*fetching places data from Foursquare API and convert to
+   json fromat to update places state if there isn't any errors
+  */
+   fetch4sqr = () => {
     let longURL = 'https://api.foursquare.com/v2/venues/search?ll=31.2001,29.9187&query=museum&limit=8&client_id=EZJTGK5PUBSHU4IE5D35DJC0VVPQLLWYK13DWYH2WUFCV2WG&client_secret=5CGW1M3HKQ0WYHACNLOZZYMXP5VKR3UDKU2BT2LSEK2UZHTJ&v=20180803';
 
     fetch(longURL)
@@ -40,7 +44,7 @@ class App extends Component {
         this.setState({ places: places.response.venues });
       }).catch(error => (console.log(error)));
   }
-
+// to open the info window when the marker is clicked
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -48,6 +52,34 @@ class App extends Component {
       showingInfoWindow: true
     });
 
+  /*
+  create markers array to collect markers data to be used by
+  list items of the sidemenu to trigger the infoWindow
+  click event of the corresponding marker on the map.
+  
+  Inspired from: https://stackoverflow.com/questions/35610873/google-maps-with-responsive-sidebar
+  */
+
+  markers = [];
+  //function to add the markers data to the array
+  grabMarkersinfo = (marker) => {
+
+    if (marker !== undefined) {
+      this.markers.push(marker)
+    } else {
+      this.markers = [];
+    }
+    console.log(this.markers);
+  }
+  //function to open the corresponding info window
+  connectLiToMarker = (place) => {
+    this.markers.filter(m => {
+      if (m.props.id === place.id) {
+        return new m.props.google.maps.event.trigger(m.marker, 'click')
+      }
+    })
+  }
+//to close the infowindow if the user clicked on the map
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -66,7 +98,7 @@ class App extends Component {
 
     const { places, activeMarker, showingInfoWindow, selectedPlace, query } = this.state;
 
-    //To filter the places list as i learnead from the course
+    //To filter the places list as i learned from the course
     let showingPlaces;
     if (query.trim() !== '') {
       const match = new RegExp(escapeRegExp(query), 'i');
@@ -93,7 +125,7 @@ class App extends Component {
           onMarkerClick={this.onMarkerClick}
           activeMarker={activeMarker}
           showingInfoWindow={showingInfoWindow}
-
+          connectLiToMarker={this.connectLiToMarker}
           query={this.state.query}
           updateQuery={this.updateQuery}
         />
@@ -106,7 +138,7 @@ class App extends Component {
           activeMarker={activeMarker}
           showingInfoWindow={showingInfoWindow}
           selectedPlaces={selectedPlace}
-
+          grabMarkersinfo={this.grabMarkersinfo}
         />
 
       </div>

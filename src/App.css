@@ -89,3 +89,7 @@ Map {
 .slideOut {
   transform: translateX(-100%);
 }
+
+.gmerror{
+  margin: 25% auto;
+}

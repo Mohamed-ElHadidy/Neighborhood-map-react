@@ -2,9 +2,9 @@ import React from 'react'
 
 const Header = props => {
     return (
-        <div className="header">
+        <header className="header">
             <h1>Neighborhood Map</h1>
-        </div>
+        </header>
     )
 }
 

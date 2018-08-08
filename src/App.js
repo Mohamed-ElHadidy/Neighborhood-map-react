@@ -73,10 +73,8 @@ class App extends Component {
   //function to add the markers data to the array
   grabMarkersinfo = (marker) => {
 
-    if (marker !== undefined) {
+    if (marker !== null) {
       this.markers.push(marker)
-    } else {
-      this.markers = [];
     }
     console.log(this.markers);
   }

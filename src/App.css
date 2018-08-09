@@ -30,7 +30,7 @@ Map {
   background-color: #104555;
   color: #f0f8ff;
   padding: 15px 0;
-  width: 30%;
+  width: 40%;
   height: 91vh;
   position: absolute;
   margin-top: 60px;
@@ -64,7 +64,7 @@ Map {
 
 .menu-btn {
   margin-top: 5px;
-  margin-left: 290px;
+  margin-left: 95%;
   padding-left: 10px;
   width: 120px;
   height: 40px;
@@ -97,3 +97,4 @@ Map {
 .gmerror{
   margin: 25% auto;
 }
+

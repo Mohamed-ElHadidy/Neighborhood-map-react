@@ -7,7 +7,7 @@ export class MapComponent extends Component {
 
     render() {
 
-        const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces, grabMarkersinfo, fetchError } = this.props;
+        const { google, onMapClicked, places, onMarkerClick, activeMarker, showingInfoWindow, selectedPlaces, grabMarkersinfo } = this.props;
 
         console.log(places)
 

@@ -44,15 +44,18 @@ class App extends Component {
     fetch(longURL)
       .then(response => {
         if (!response.ok) {
-          throw Error
+          throw Error(response.status)
         } else {
           return response.json();
         }
       }).then(places => {
         this.setState({ places: places.response.venues });
-      }).catch(error => (console.log(error)));
-    this.setState({ fourSqrError: true })
-  }
+      }).catch(error => {
+        this.setState({ fourSqrError: true })
+        console.log(`four square error ${error}`)
+        alert("Faiiled to get locations data, please try again")
+      })
+    }
   // to open the info window when the marker is clicked
   onMarkerClick = (props, marker, e) =>
     this.setState({

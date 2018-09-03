@@ -9,10 +9,10 @@ by using the Google maps api for loading the and the locations data by Four squa
 
 To get started right away:
 
-* Download it from [Here](https://github.com/Mohamed-ElHadidy/reactnd-project-myreads-starter/archive/master.zip) *OR* Clone it from 
+* Download it from [Here](https://github.com/Mohamed-ElHadidy/Neighborhood-map-react/archive/master.zip) *OR* Clone it from 
 
 ```
-https://github.com/Mohamed-ElHadidy/reactnd-project-myreads-starter.git
+https://github.com/Mohamed-ElHadidy/Neighborhood-map-react.git
  ```
 
 * install all project dependencies with `npm install`
